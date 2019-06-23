@@ -9,10 +9,10 @@ RUN true \
 	&& sed -i '/^\/usr\/lib$/ d; /^\/lib$/ d;' /etc/ld.so.conf
 
 RUN emerge --unmerge openssh ssh \
-	&& emerge --autounmask-write --autounmask-continue --tree --verbose --empty \
+	&& emerge --autounmask-write --autounmask-continue --tree --verbose --empty --keep-going \
 		--exclude='openssh ssh' \
 		--exclude='gzip bzip2 tar xz' \
-		--exclude='debianutils patch pinentry' \
+		--exclude='debianutils patch pinentry baselayout' \
 		@world
 
 RUN rm -rf /usr/portage
